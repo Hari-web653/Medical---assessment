@@ -1,0 +1,239 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<time.h>
+
+struct node
+{
+	char name[20];
+	int age;
+	char disease[20];
+    char fur[20];
+    struct node *next;
+}*front, *rear;
+void insert();
+void show();
+void appo();
+void searched();
+void details();
+void delay(int number_of_seconds) 
+{ 
+    // Converting time into milli_seconds 
+    int milli_seconds = 1000 * number_of_seconds; 
+  
+    // Stroing start time 
+    clock_t start_time = clock(); 
+  
+    // looping till required time is not acheived 
+    while (clock() < start_time + milli_seconds) 
+        ; 
+} 
+int main()
+{
+	system("CLS");
+	int n,i,j;
+	char k,c;
+	printf("\n\n\n\t\t\t*****WELCOME TO VAMSI SUPERSPECIALITY HOSPITALS***");
+	getch();
+	system("CLS");
+	printf("\n\n\n\t\tDo you have appointment? Enter Y if you have or NO if you dont have: ");
+//	c=getchar();
+    fflush(stdin);
+	scanf("%c",&k);
+	//printf("%c",k);
+	getch();
+	if(k=='Y'||k=='y')
+	{
+	
+	printf("Proceed with the next few steps \n");
+	printf("\n\n\t\t\t1.General Surgeon");
+	printf("\n\n\t\t\t2.HeartSurgeon");
+	printf("\n\n\t\t\t3.Child Doctor");
+	printf("\n\n\t\t\t4.ENT");
+	printf("\n\n\t\t\t5.Details of patients");
+	printf("\n\n\t\t\t6.Speciality of hospital");
+	printf("\n\n\t\t\t7.Know your details");
+	printf("\n\n\t\t\t8.Those who need to meet again");
+	printf("\n\n\n\t\t\t choose your option");
+	scanf("%d",&i);
+		switch(i)
+		{
+		
+	case 1 : { 
+	system("CLS");
+				printf("\n\n\t\tAvailable Doctors in this domain are: \n\n\t\t 1. Dr.Ram Gopal\n\n \n\t\t 2. Dr.Siddarth \n");
+				printf("\n\n\t\tEnter the serial number of the doctor you want to meet: ");
+				scanf("%d",&j);	
+			    insert();
+			    main();
+			break;
+			 }
+	case 2 : { system("CLS");
+				printf("\n\n\t\tAvailable Doctors in this domain are: \n\n\t\t 1. Dr.Vinayak \n\n\t\t 2. Dr.Rajmouli \n");
+				printf("\n\n\t\tEnter the serial number of the doctor you want to meet: ");
+				scanf("%d",&j);	
+				insert();
+		//		delet();
+				 main();
+				break;
+			 }
+	case 3 : { system("CLS");
+				printf("\n\n\t\tAvailable Doctors in this domain are: \n\n\t\t 1. Dr.Krishna \n\n\t\t 2. Dr.Thaman \n");
+				printf("\n\n\t\tEnter the serial number of the doctor you want to meet: ");
+				scanf("%d",&j);
+				insert();
+			    main();	
+				break;
+			 }
+	case 4 : { system("CLS");
+				printf("\n\n\t\tAvailable Doctors in this domain are: \n\n\t\t 1. Dr.Charuseela \n\n\t\t 2. Dr.Srimanth \n");
+				printf("\n\n\t\tEnter the serial number of the doctor you want to meet: ");
+				scanf("%d",&j);	
+				insert();
+				getch();
+				main();
+				break;
+			 }
+			 case 5:
+			 	{ system("CLS");
+			 		show();
+			 		getch();
+			 		main();
+			 	    break;
+				 }
+			case 6:
+				{
+					details();
+					getch();
+					main();
+					break;
+				}
+			case 7:
+				{
+					searched();
+					getch();
+					main();
+					break;
+				}
+			case 8:
+				{
+					system("CLS");
+					appo();
+					getch();
+					main();
+					break;
+				}
+	default :
+	 printf("No category available, Try again \n");
+			 
+	printf("%d \n",j);
+		}
+	}
+	else {
+			printf("Get an appointment, See you soon \n");
+			
+		}
+		 
+}
+void details()
+{
+	printf("\n\n\t\t1.24X7 Availability of Doctors");
+	printf("\n\t\t2.Advanced Equipment");
+	printf("\n\t\t3.Good Staff Members");
+	printf("\n\t\t4.taking extra care");
+	printf("\n\n\n\t\t\t Good Health is a wealth ");
+}
+void insert()
+{
+    struct node *temp;
+ 
+    temp = (struct node*)malloc(sizeof(struct node));
+    printf("\n\n\t\tEnter name of patient: ");
+    scanf("%s",temp->name);
+    printf("\n\n\t\tEnter age of patient: ");
+    scanf("%d",&temp->age);
+    printf("\n\n\t\tEnter disease of patient: ");
+    scanf("%s",temp->disease);
+    printf("\n\n\t\t If patient need futher appointment of patient: ");
+    scanf("%s",temp->fur);
+    temp->next = NULL;
+    if (rear  ==  NULL)
+    {
+        front = rear = temp;
+    }
+    else
+    {
+        rear->next = temp;
+        rear = temp;
+    }    
+   // printf("hellow world");
+}
+void show()
+{
+    struct node *temp;
+    char name2[20];
+    temp = front;
+    if (front == NULL)
+    {
+        printf("No patients yet \n");
+    }
+    while(temp)
+    {    
+        printf("\t\t Name of patient:- %s\n\n", temp->name);
+        fflush(stdin);
+        printf(" \t\tage of patient:- %d\n\n", temp->age);
+        fflush(stdin);
+        printf("\t\tName of disease:- %s\n\n", temp->disease);
+        temp = temp->next;
+    }
+}
+void searched()
+{
+    struct node *temp;
+    char *name2;
+    printf("enter the name");
+    scanf("%s",name2);
+    temp = front;
+    if (front == NULL)
+    {
+        printf("No patient yet \n");
+    }
+    while(temp)
+    {    
+   char *name3=(temp->name);
+    if(strcmp(name2,name3)==0)
+    {
+        printf("\t\t Name of patient:- %s\n\n", temp->name);
+        fflush(stdin);
+        printf(" \t\tage of patient:- %d\n\n", temp->age);
+        fflush(stdin);
+        printf("\t\tName of disease:- %s\n\n", temp->disease);
+    }
+        temp = temp->next;
+        
+    }
+}
+void appo()
+{
+    struct node *temp;
+    temp = front;
+    if (front == NULL)
+    {
+        printf("queue is empty \n");
+    }
+    while(temp)
+    {    
+   char *name3=(temp->fur);
+    if(strcmp("yes",name3)==0)
+    {
+        printf("\t\t Name of patient:- %s\n\n", temp->name);
+        fflush(stdin);
+        printf(" \t\tage of patient:- %d\n\n", temp->age);
+        fflush(stdin);
+        printf("\t\tName of disease:- %s\n\n", temp->disease);
+    }
+        temp = temp->next;
+        
+    }
+}
