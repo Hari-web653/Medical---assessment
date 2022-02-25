@@ -1,0 +1,28 @@
+
+
+
+First things first! Let us start by importing the required libraries.
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import cv2
+from skimage import io
+import tensorflow as tf
+from tensorflow.python.keras import Sequential
+from tensorflow.keras import layers, optimizers
+from tensorflow.keras.applications.resnet50 import ResNet50
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Model
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from tensorflow.keras import backend as K
+from sklearn.preprocessing import StandardScaler
+%matplotlib inline
+brain_df = pd.read_csv('/Healthcare AI Datasets/Brain_MRI/data_mask.csv')
+brain_df.info()
+brain_df.head(5)
+brain_df['mask'].value_counts()
+image = cv2.imread(brain_df.image_path[1301])
+plt.imshow(image)
+image1 = cv2.imread(brain_df.mask_path[1301])
+plt.imshow(image1)
